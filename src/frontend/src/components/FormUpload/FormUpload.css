@@ -1,0 +1,161 @@
+.form-upload-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+}
+
+.form-upload-card {
+  max-width: 640px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 24px rgba(0, 41, 94, 0.12);
+}
+
+.form-upload-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  color: #003087;
+}
+
+.form-upload-lead {
+  margin: 0 0 1.5rem;
+  line-height: 1.55;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.form-upload-lens-note {
+  margin: -0.5rem 0 1.25rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(0, 92, 188, 0.08);
+  border: 1px solid rgba(0, 92, 188, 0.2);
+  font-size: 0.88rem;
+  color: #003087;
+}
+
+.form-upload-drop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 2px dashed #8fa8c4;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #f7fafc;
+  margin-bottom: 1.25rem;
+}
+
+.form-upload-drop:hover {
+  border-color: #005cbc;
+  background: #f0f6fc;
+}
+
+.form-upload-drop input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.form-upload-drop span {
+  padding: 1rem;
+  text-align: center;
+  color: #005cbc;
+  font-weight: 600;
+}
+
+.form-upload-error {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem 0.95rem;
+  background: #fde8e8;
+  color: #5c1010;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.form-upload-error-title {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #6b0f0f;
+}
+
+.form-upload-error-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  line-height: 1.45;
+}
+
+.form-upload-role {
+  margin-bottom: 1.25rem;
+}
+
+.form-upload-role-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #003087;
+  margin-bottom: 0.5rem;
+}
+
+.form-upload-role-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 520px) {
+  .form-upload-role-toggle {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-upload-role-btn {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 2px solid #c5d4e5;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-upload-role-btn:hover:not(:disabled) {
+  border-color: #0066cc;
+}
+
+.form-upload-role-btn.active {
+  border-color: #0066cc;
+  background: linear-gradient(145deg, #f0f6ff 0%, #e8f0fc 100%);
+  box-shadow: 0 2px 10px rgba(0, 102, 204, 0.12);
+}
+
+.form-upload-role-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.form-upload-role-title {
+  display: block;
+  font-weight: 700;
+  color: #003087;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-upload-role-desc {
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #555;
+}

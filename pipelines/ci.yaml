@@ -1,0 +1,43 @@
+# CI pipeline for linting and testing Python code using uv, pre-commit, and pytest on main and develop branches.
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+variables:
+  - group: uv-index-configuration
+  - name: uvVersion
+    value: "0.6.14"
+  - name: pythonVersion
+    value: "3.10"
+pool:
+  vmImage: ubuntu-latest
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(pythonVersion)'
+    displayName: 'Set up Python $(pythonVersion)'
+  - script: |
+      curl -LsSf https://astral.sh/uv/$(uvVersion)/install.sh | sh
+    displayName: 'Install uv $(uvVersion)'
+  - script: uv sync
+    env:
+      UV_INDEX_JFROG_PASSWORD: $(UV_INDEX_JFROG_PASSWORD)
+    displayName: Install virtual environment and dependencies
+  - script: |
+      uv run pre-commit run --all-files --show-diff-on-failure
+    displayName: Run pre-commit checks
+  - script: |
+      uv run pytest --junitxml=test-results.xml
+    displayName: Run tests
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'test-results.xml'
+      failTaskOnFailedTests: true
+    displayName: 'Publish test results'
+  - script: |
+      uv build
+    displayName: Build
+    env:
+      UV_INDEX_JFROG_PASSWORD: $(UV_INDEX_JFROG_PASSWORD)

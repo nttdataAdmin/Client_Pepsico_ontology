@@ -1,0 +1,145 @@
+.anomalies-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.anomalies-page--live-api .anomalies-telemetry-title::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 0.35rem;
+  border-radius: 50%;
+  background: #00a67e;
+  vertical-align: middle;
+  box-shadow: 0 0 0 0 rgba(0, 166, 126, 0.4);
+  animation: anomalies-live-dot 2s ease-out infinite;
+}
+
+@keyframes anomalies-live-dot {
+  70% {
+    box-shadow: 0 0 0 6px rgba(0, 166, 126, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 166, 126, 0);
+  }
+}
+
+.database-indicators-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.anomaly-model-inline-detail {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.15rem 1.15rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 42, 94, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 246, 252, 0.95) 100%);
+  box-shadow: 0 2px 10px rgba(0, 41, 94, 0.06);
+}
+
+.anomaly-model-inline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.anomaly-model-inline-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #002a5e;
+}
+
+.anomaly-model-inline-close {
+  flex-shrink: 0;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #005cbc;
+  background: rgba(0, 92, 188, 0.08);
+  border: 1px solid rgba(0, 92, 188, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.anomaly-model-inline-close:hover {
+  background: rgba(0, 92, 188, 0.14);
+}
+
+.anomaly-model-inline-meta {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  color: #5a6570;
+  font-variant-numeric: tabular-nums;
+}
+
+.anomaly-model-inline-detail .database-preview-scroll {
+  max-height: min(360px, 50vh);
+  overflow-y: auto;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-text);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.anomalies-telemetry-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #002a5e;
+  margin: 1.25rem 0 0.75rem;
+  text-align: center;
+}
+
+.anomalies-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filters-panel-container {
+  height: fit-content;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.chart-wrapper {
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+@media (max-width: 1200px) {
+  .anomalies-layout {
+    grid-template-columns: 1fr;
+  }
+}

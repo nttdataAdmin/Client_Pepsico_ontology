@@ -1,0 +1,255 @@
+.es-key-metrics {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+}
+
+.es-key-metrics-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #002a5e;
+}
+
+.es-key-metrics-lead {
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #5a6570;
+}
+
+.es-key-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.es-key-metric-tile {
+  border: 1px solid rgba(0, 42, 94, 0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.es-key-metric-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #5a6570;
+}
+
+.es-key-metric-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #003087;
+}
+
+.es-key-metric-sub {
+  font-size: 0.78rem;
+  color: #6a7580;
+  line-height: 1.35;
+}
+
+.es-key-metric-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.es-key-metric-top-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.es-kpi-data-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 5px;
+  border: 1px solid rgba(0, 92, 188, 0.28);
+  border-radius: 6px;
+  background: #fff;
+  color: #005cbc;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.es-kpi-data-icon:hover {
+  background: rgba(0, 92, 188, 0.08);
+}
+
+.es-kpi-band {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.es-kpi-band--good {
+  background: rgba(46, 125, 50, 0.15);
+  color: #1b5e20;
+}
+
+.es-kpi-band--watch {
+  background: rgba(245, 124, 0, 0.18);
+  color: #e65100;
+}
+
+.es-kpi-band--bad {
+  background: rgba(198, 40, 40, 0.15);
+  color: #b71c1c;
+}
+
+.es-key-metric-reason {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #37474f;
+}
+
+.es-kpi-why-btn {
+  margin-top: 8px;
+  align-self: flex-start;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 92, 188, 0.35);
+  background: #fff;
+  color: #005cbc;
+  cursor: pointer;
+}
+
+.es-kpi-why-btn:hover {
+  background: rgba(0, 92, 188, 0.08);
+}
+
+.es-kpi-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 21000;
+  background: rgba(0, 20, 50, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.es-kpi-modal {
+  width: min(420px, 100%);
+  padding: 1rem 1.15rem 1.1rem;
+  max-height: min(70vh, 420px);
+  overflow: auto;
+}
+
+.es-kpi-modal--data {
+  width: min(900px, 100%);
+  max-height: min(88vh, 720px);
+}
+
+.es-kpi-modal-sub {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #5a6570;
+  font-weight: 400;
+}
+
+.es-kpi-modal-tile-ref {
+  margin: 0.2rem 0 0;
+  font-size: 0.7rem;
+  color: #7a8794;
+}
+
+.es-kpi-modal-empty {
+  margin: 0.5rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #5a6570;
+}
+
+.es-kpi-data-table-wrap {
+  overflow-x: auto;
+  margin-top: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.es-kpi-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.72rem;
+}
+
+.es-kpi-data-table th,
+.es-kpi-data-table td {
+  border-bottom: 1px solid #eef2f6;
+  padding: 7px 9px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.es-kpi-data-table th {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #1e3a5f;
+  white-space: nowrap;
+}
+
+.es-kpi-data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.es-kpi-data-table td {
+  color: #2a3540;
+  max-width: 12rem;
+  word-break: break-word;
+}
+
+.es-kpi-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 0.65rem;
+}
+
+.es-kpi-modal-head-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.es-kpi-modal-head h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #003087;
+}
+
+.es-kpi-modal-close {
+  border: none;
+  background: transparent;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #5a6570;
+}
+
+.es-kpi-modal-body {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #2a3540;
+  white-space: pre-wrap;
+}

@@ -1,0 +1,8 @@
+year,month,day,state,plant,asset_id,asset_type,maintenance_type,status,scheduled_date,estimated_duration_hours
+2023,February,15,Beloit,P01 - Beloit,BEL-GEN-003,Generator,Preventive,In Progress,2023-02-15,8
+2023,February,20,Jonesboro,P01 - Jonesboro,JON-GEN-001,Generator,Emergency,Scheduled,2023-02-20,12
+2023,February,22,Jonesboro,P01 - Jonesboro,JON-PUMP-002,Motor Pump,Emergency,Scheduled,2023-02-22,10
+2023,March,5,Beloit,P01 - Beloit,BEL-PUMP-001,Motor Pump,Preventive,Scheduled,2023-03-05,6
+2023,March,8,Jonesboro,P01 - Jonesboro,JON-COMP-003,Motor Compressor,Preventive,Scheduled,2023-03-08,8
+2023,March,12,Beloit,P01 - Beloit,BEL-COMP-002,Motor Compressor,Preventive,Scheduled,2023-03-12,4
+2023,March,18,Jonesboro,P01 - Jonesboro,JON-FAN-004,Motor Fan,Corrective,Scheduled,2023-03-18,5

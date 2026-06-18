@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 1120" width="840" height="1120">
+  <defs>
+    <filter id="paper" x="-2%" y="-2%" width="104%" height="104%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="n"/>
+      <feDiffuseLighting in="n" lighting-color="#fff" surfaceScale="0.6" result="l">
+        <feDistantLight azimuth="45" elevation="55"/>
+      </feDiffuseLighting>
+      <feBlend in="SourceGraphic" in2="l" mode="multiply"/>
+    </filter>
+    <style>
+      .t{font-family:Arial,Helvetica,sans-serif;fill:#1a1a1a}
+      .h{font-family:'Segoe Script',cursive;fill:none;stroke:#0d1b4a;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:.93}
+      .hdr{fill:#003087;font-weight:bold;font-size:11px;font-family:Arial,sans-serif}
+      .cell{font-size:8.5px}
+      .note{font-family:'Segoe Script',cursive;font-size:11px;fill:#333;opacity:.85}
+    </style>
+  </defs>
+  <rect width="840" height="1120" fill="#f7f4ee" filter="url(#paper)"/>
+  <rect x="16" y="16" width="808" height="56" fill="#003087"/>
+  <text x="36" y="42" class="hdr" fill="#fff">JOB AID  PACKAGE QUALITY &amp; REGULATORY / WEAKLINK (SAMPLE FL-5883 STYLE)</text>
+  <text x="36" y="58" class="t" fill="#cce0ff" font-size="9">OBJECTIVE: VERIFY CORRECT PRODUCT, PACKAGE, AND CODING  ALL ROWS: GO</text>
+  <text x="700" y="42" class="t" fill="#fff" font-size="8">FL-5883 sample</text>
+  <rect x="16" y="82" width="808" height="72" fill="#fff" stroke="#bbb" stroke-width="0.8"/>
+  <text x="28" y="102" class="t cell">DATE ____/____/____</text>
+  <text x="220" y="102" class="t cell">SHIFT ____</text>
+  <text x="320" y="102" class="t cell">TIME ____</text>
+  <text x="420" y="102" class="t cell">MACHINE NO. ________</text>
+  <text x="28" y="122" class="t cell">PRODUCT ____________________</text>
+  <text x="320" y="122" class="t cell">FLAVOR ____________</text>
+  <text x="520" y="122" class="t cell">UPC / FILM ____________</text>
+  <text x="28" y="142" class="t cell">NITROGEN FLUSH % O� ______</text>
+  <text x="28" y="168" class="t cell" font-weight="bold">CHECKLIST (handwritten  in GO column  demo classifier: filename contains go)</text>
+  <g stroke="#999" stroke-width="0.5">
+    <line x1="16" y1="188" x2="824" y2="188"/>
+    <line x1="16" y1="212" x2="824" y2="212"/>
+    <line x1="420" y1="188" x2="420" y2="980"/>
+    <line x1="520" y1="188" x2="520" y2="900"/>
+    <line x1="620" y1="188" x2="620" y2="900"/>
+  </g>
+  <text x="28" y="206" class="t cell" font-weight="bold">Check item</text>
+  <text x="440" y="206" class="t cell">GO</text>
+  <text x="540" y="206" class="t cell">NO-GO</text>
+  <text x="640" y="206" class="t cell">N/A � YES � NO</text>
+  <text x="28" y="236" class="t cell">First 5 bags  mixed product review</text>
+  <text x="28" y="264" class="t cell">PSM completed?</text>
+  <text x="28" y="292" class="t cell">Blocker / sock in place?</text>
+  <text x="28" y="320" class="t cell">Expiration date / Price coding</text>
+  <text x="28" y="348" class="t cell">Day / Plant / Shift / Julian code</text>
+  <text x="28" y="376" class="t cell">Material solvent odor?</text>
+  <text x="28" y="404" class="t cell">Product tasted / correct product in bag?</text>
+  <text x="28" y="432" class="t cell">Tape date / Case label date</text>
+  <text x="28" y="460" class="t cell">Canadian made week-of date</text>
+  <text x="28" y="488" class="t cell">PACKAGE APPEARANCE (graphics / registration / cut)</text>
+  <text x="28" y="516" class="t cell">SEAL INTEGRITY (pleats / tucks / strength)</text>
+  <text x="28" y="544" class="t cell">CASE COUNT (DTC configuration)</text>
+  <text x="28" y="580" class="t cell" font-size="7.5">Bottom rows: GO | RTA | RA columns</text>
+  <text x="440" y="580" class="t cell">GO</text>
+  <text x="540" y="580" class="t cell">RTA</text>
+  <text x="640" y="580" class="t cell">RA</text>
+  <!-- Handwritten GO ticks (wobbly polylines) -->
+  <path class="h" d="M 452 228 q 3 4 6 8 q 4 6 10 2 q 5 -8 14 -12"/>
+  <path class="h" d="M 448 256 l 4 6 l 8 -2 l 6 10 l 12 -18"/>
+  <path class="h" d="M 454 284 c 2 4 6 8 8 12 c 4 -6 10 -14 16 -20"/>
+  <path class="h" d="M 450 312 l 3 5 l 9 8 l 11 -15"/>
+  <path class="h" d="M 456 340 q 2 5 5 10 t 12 -6 q 6 -4 10 -8"/>
+  <path class="h" d="M 448 368 l 6 14 l 14 -22 l 4 8"/>
+  <path class="h" d="M 452 396 c 3 5 8 10 10 14 c 5 -8 12 -16 18 -24"/>
+  <path class="h" d="M 450 424 l 5 8 l 10 -3 l 8 12"/>
+  <path class="h" d="M 454 452 q 4 6 8 10 q 6 -10 14 -16"/>
+  <path class="h" d="M 448 480 l 4 7 l 12 6 l 8 -14"/>
+  <path class="h" d="M 452 508 c 2 4 6 9 9 14 c 6 -9 14 -18 20 -26"/>
+  <path class="h" d="M 450 536 l 6 10 l 14 -8 l 6 6"/>
+  <!-- PSM YES handwritten -->
+  <path class="h" d="M 648 256 l 3 8 l 10 -2 l 5 12"/>
+  <text x="24" y="900" class="note">Approver Qs �</text>
+  <path class="h" d="M 100 895 q 8 12 20 28" stroke="#555"/>
+  <rect x="28" y="940" width="360" height="100" fill="none" stroke="#888" stroke-dasharray="4 3"/>
+  <rect x="420" y="940" width="380" height="100" fill="none" stroke="#888" stroke-dasharray="4 3"/>
+  <text x="36" y="962" class="t cell">Initial verification signature</text>
+  <text x="432" y="962" class="t cell">Final verification signature</text>
+  <path class="h" d="M 452 612 l 4 8 l 12 -4 l 6 10"/>
+  <path class="h" d="M 448 640 q 3 6 8 12 q 8 -12 16 -20"/>
+  <path class="h" d="M 454 668 c 2 5 6 10 9 15 c 5 -10 12 -20 18 -28"/>
+  <text x="28" y="1060" class="t cell" font-size="8" fill="#666">Filename: sample_handwritten_fl5883_go.svg</text>
+</svg>

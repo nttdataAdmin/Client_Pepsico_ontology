@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "target": "weighted_kpi_impact",
+  "target_kind": "regression",
+  "feature_order": [
+    "shift_hour_at_event",
+    "hours_remaining_in_shift",
+    "rul_numeric",
+    "kpi_score",
+    "n_kpi_bad",
+    "recent_temp_dev_c",
+    "recent_vibration_mm_s",
+    "recent_waste_kg_last_hour",
+    "recent_oee_pct",
+    "operator_skill_level",
+    "on_hold_inventory_kg_current",
+    "action_freq_same_situation_2w",
+    "action_freq_same_situation_2m",
+    "action_success_rate_2m",
+    "status",
+    "criticality",
+    "asset_type",
+    "qc_nogo",
+    "plant",
+    "state",
+    "action_id"
+  ],
+  "cat_feature_names": [
+    "status",
+    "criticality",
+    "asset_type",
+    "plant",
+    "state",
+    "action_id"
+  ],
+  "drop_meta_columns": [
+    "event_id",
+    "event_seq",
+    "weighted_kpi_impact"
+  ],
+  "drop_sub_kpi_columns": [
+    "t_resolve_min",
+    "unplanned_downtime_remaining_shift_min",
+    "waste_kg_remaining_shift",
+    "temp_deviation_c_avg",
+    "vibration_mm_s_avg",
+    "production_goal_pct_remaining",
+    "true_efficiency_pct_remaining",
+    "consumer_complaints_expected",
+    "quality_ok_pct_remaining",
+    "operator_satisfaction_1_5",
+    "on_hold_inventory_kg_generated"
+  ],
+  "time_column": "event_seq",
+  "split_strategy": "sequential_holdout",
+  "notes": [
+    "The remediation action is an input feature (action_id), not the target.",
+    "The target is a weighted composite of the sub-KPI columns; weights live in target_definition.json.",
+    "Sub-KPI columns are kept in the CSV so weights can be tuned without regenerating the dataset, but they are dropped before training (mirrors KPI_TARGETS handling in the PepsiCo TrainingFunctions pipeline).",
+    "Categorical features are passed by name; the trainer resolves indices against feature_order at fit time."
+  ]
+}

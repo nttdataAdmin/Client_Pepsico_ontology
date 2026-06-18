@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mfgpro_mockup"
+version = "0.1.0"
+description = "MFGPro+ Mockup Demo"
+authors = [{ name = "DS D&AI Team + C5i" }]
+readme = "README.md"
+keywords = ['python']
+requires-python = ">=3.10"
+dependencies = [
+    "catboost>=1.2.10",
+    "email-validator>=2.3.0",
+    # Core runtime dependencies only — other types of dependencies are declared separately under [dependency-groups]
+    "fastapi>=0.136.1",
+    "httpx>=0.28.1",
+    "msal>=1.36.0",
+    "openai>=2.32.0",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.3",
+    "pydantic>=2.13.3",
+    "pydantic-settings>=2.14.0",
+    "python-dotenv>=1.2.2",
+    "python-multipart>=0.0.27",
+    "scikit-learn>=1.7.2",
+    "uvicorn[standard]>=0.46.0",
+    "xgboost>=3.2.0",
+]
+
+[project.urls]
+Repository = "https://dev.azure.com/PepsiCoIT/Global_SnT_DS_MCT/_git/mfgpro_mockup"
+
+[dependency-groups]
+code-quality = ["pre-commit==4.2.0"]
+test = [
+    "pytest==8.3.5",
+    "pytest-cov==6.1.0",
+]
+dev = [
+    {include-group = "code-quality"},
+    {include-group = "test"},
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
+[[tool.uv.index]]
+default = true
+name = "jfrog"
+url = "https://myartifactory.mypepsico.com/artifactory/api/pypi/Data_Science_Advanced_Analytics-pypi-prod-virtual/simple"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src", "tests"]

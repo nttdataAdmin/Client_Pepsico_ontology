@@ -1,0 +1,281 @@
+.recommendations-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recommendations-table {
+  overflow-x: auto;
+}
+
+.recommendations-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.recommendations-table th {
+  text-align: left;
+  padding: 12px;
+  background-color: #f5f5f5;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  position: sticky;
+  top: 0;
+}
+
+.recommendations-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.asset-id-cell {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+}
+
+.recommendation-link {
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.recommendation-link:hover {
+  color: #0052a3;
+}
+
+.get-ai-btn {
+  padding: 6px 12px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.get-ai-btn:hover:not(:disabled) {
+  background-color: #0052a3;
+}
+
+.get-ai-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ai-recommendation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.ai-recommendation-popup {
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.ai-header h3 {
+  font-size: 20px;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.ai-content {
+  padding: 0;
+}
+
+.ai-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ai-step {
+  padding: 12px 15px;
+  background: #f0f7ff;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+.ai-section {
+  padding: 10px 0;
+  line-height: 1.8;
+}
+
+.ai-section strong {
+  color: var(--color-primary);
+  font-size: 15px;
+}
+
+.ai-text {
+  padding: 8px 0;
+  line-height: 1.6;
+  color: #555;
+}
+
+.ai-heading {
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 20px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.ai-heading.h1 {
+  font-size: 20px;
+}
+
+.ai-heading.h2 {
+  font-size: 18px;
+}
+
+.ai-heading.h3 {
+  font-size: 16px;
+}
+
+.ai-section {
+  margin-bottom: 15px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 4px;
+}
+
+.ai-section .section-title {
+  font-size: 15px;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.ai-section .section-content {
+  display: block;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.ai-step {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+.ai-step::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.ai-step strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.ai-nba-miss {
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #5d4037;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 6px;
+}
+
+
+.ai-nba-miss { margin: 0 0 12px; padding: 8px 10px; font-size: 13px; line-height: 1.45; color: #5d4037; background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; }

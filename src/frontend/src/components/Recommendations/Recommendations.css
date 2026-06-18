@@ -1,0 +1,55 @@
+.recommendations-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-text);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.rec-section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #002a5e;
+  margin: 1.25rem 0 0.65rem;
+}
+
+.rec-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1rem;
+  background: rgba(0, 42, 94, 0.04);
+  border-radius: 4px;
+  justify-content: center;
+}
+
+.rec-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #4a5a6a;
+}
+
+.rec-legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}

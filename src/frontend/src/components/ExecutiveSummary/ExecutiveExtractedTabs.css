@@ -1,0 +1,218 @@
+.es-extracted-panel {
+  margin-bottom: 1rem;
+}
+
+.es-eit-header {
+  margin-bottom: 0.85rem;
+}
+
+.es-eit-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a2740;
+}
+
+.es-eit-subtitle {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #5a6570;
+}
+
+.es-eit-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 48, 135, 0.12);
+}
+
+.es-eit-tab {
+  border: 1px solid rgba(0, 131, 143, 0.45);
+  background: rgba(255, 255, 255, 0.85);
+  color: #006064;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.es-eit-tab:hover {
+  background: rgba(0, 151, 167, 0.08);
+}
+
+.es-eit-tab--active {
+  background: linear-gradient(180deg, #006064 0%, #004d54 100%);
+  color: #e0f7fa;
+  border-color: #004d54;
+  box-shadow: 0 2px 8px rgba(0, 77, 84, 0.2);
+}
+
+.es-eit-panel {
+  min-height: 0;
+}
+
+.es-eit-panel--gate {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .es-eit-panel--gate {
+    display: grid;
+    grid-template-columns: minmax(220px, 32%) 1fr;
+    align-items: start;
+    gap: 1.25rem;
+  }
+}
+
+.es-eit-scan-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #546e7a;
+  margin-bottom: 0.45rem;
+}
+
+.es-eit-scan-frame {
+  max-height: 420px;
+  overflow: auto;
+  padding: 0.65rem;
+  background: #f4f7fb;
+  border: 1px solid rgba(0, 48, 135, 0.12);
+  border-radius: 10px;
+}
+
+.es-eit-scan-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.es-eit-scan-placeholder {
+  color: #78909c;
+  font-size: 0.85rem;
+  padding: 1.5rem 0.75rem;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.es-eit-gate-narrative {
+  min-width: 0;
+}
+
+.es-extracted-panel .es-nogo-breakdown,
+.es-extracted-panel .es-go-breakdown {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.es-eit-panel--data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.es-eit-data-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.es-eit-btn {
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.es-eit-btn--gold {
+  background: linear-gradient(180deg, #d4a853 0%, #b8923f 100%);
+  color: #1a1204;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.es-eit-btn--gold:hover {
+  filter: brightness(1.06);
+}
+
+.es-eit-btn--teal {
+  background: linear-gradient(180deg, #00838f 0%, #006064 100%);
+  color: #e0f7fa;
+  border-color: rgba(0, 229, 255, 0.35);
+}
+
+.es-eit-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.es-eit-json {
+  margin: 0;
+  padding: 0.85rem;
+  min-height: 200px;
+  max-height: min(52vh, 480px);
+  overflow: auto;
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: #b2ebf2;
+  background: #0c1520;
+  border: 1px solid rgba(0, 188, 212, 0.25);
+  border-radius: 8px;
+}
+
+.es-eit-table-wrap {
+  max-height: min(52vh, 480px);
+  overflow: auto;
+  border: 1px solid rgba(0, 188, 212, 0.25);
+  border-radius: 8px;
+  background: #0c1520;
+}
+
+.es-eit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.es-eit-table th {
+  text-align: left;
+  padding: 0.5rem 0.65rem;
+  background: rgba(0, 0, 0, 0.35);
+  color: #80cbc4;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.es-eit-table td {
+  padding: 0.4rem 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: top;
+}
+
+.es-eit-td-path {
+  color: #90caf9;
+  font-family: ui-monospace, Consolas, monospace;
+  word-break: break-all;
+  width: 42%;
+}
+
+.es-eit-td-val {
+  color: #eceff1;
+  word-break: break-word;
+}

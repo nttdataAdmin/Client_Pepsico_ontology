@@ -1,0 +1,73 @@
+# Template to extract package version from pyproject.toml
+#
+# Description:
+#   This template extracts the package version from a pyproject.toml file and sets
+#   it as a pipeline variable for use in Azure Pipelines. It uses Python 3.11 to
+#   parse the TOML file and includes error handling for missing files, invalid TOML
+#   format, or missing version fields.
+#
+# Parameters:
+#   - tomlFilePath (string, default: 'pyproject.toml'):
+#       The path to the pyproject.toml file relative to the repository root.
+#   - outputVariableName (string, default: 'packageVersion'):
+#       The name of the pipeline variable where the extracted version will be stored.
+#
+# Usage:
+#   Include this template in your pipeline to extract the version and use it in
+#   subsequent steps, such as tagging releases or building artifacts.
+#   Example:
+#     steps:
+#       - template: templates/extract-version.yaml
+#         parameters:
+#           tomlFilePath: 'path/to/pyproject.toml'
+#           outputVariableName: 'myVersion'
+#       - script: echo "Version is $(myVersion)"
+#
+# Notes:
+#   - Requires Python 3.11, which is set up automatically.
+#   - The template assumes the version is defined under [project] in pyproject.toml.
+#   - Fails the pipeline if the file is missing, invalid, or lacks a version.
+
+parameters:
+  - name: tomlFilePath
+    type: string
+    default: 'pyproject.toml'
+    displayName: 'Path to pyproject.toml file'
+  - name: outputVariableName
+    type: string
+    default: 'packageVersion'
+    displayName: 'Name of the output variable for the version'
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.11'
+    displayName: 'Set up Python 3.11'
+
+  - script: |
+      version=$(python3 -c '
+      import sys
+      import tomllib
+      try:
+          with open("${{ parameters.tomlFilePath }}", "rb") as f:
+              data = tomllib.load(f)
+          version = data.get("project", {}).get("version")
+          if not version:
+              print("Error: No project.version found in ${{ parameters.tomlFilePath }}", file=sys.stderr)
+              sys.exit(1)
+          print(version)
+      except FileNotFoundError:
+          print("Error: ${{ parameters.tomlFilePath }} not found", file=sys.stderr)
+          sys.exit(1)
+      except tomllib.TOMLDecodeError:
+          print("Error: Invalid ${{ parameters.tomlFilePath }} format", file=sys.stderr)
+          sys.exit(1)
+      ')
+      if [ $? -eq 0 ]; then
+        echo "##vso[task.setvariable variable=${{ parameters.outputVariableName }}]$version"
+        echo "Extracted version: $version"
+      else
+        echo "Failed to extract version from ${{ parameters.tomlFilePath }}"
+        exit 1 # Ensure the task fails if the Python script fails
+      fi
+    displayName: 'Extract package version from ${{ parameters.tomlFilePath }}'

@@ -1,0 +1,182 @@
+.map-view {
+  min-height: 500px;
+}
+
+.map-container {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+/* Leaflet map container */
+.map-container .leaflet-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Custom marker styles */
+.custom-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.marker-label-only {
+  background: transparent !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+.marker-label-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  pointer-events: none;
+}
+
+.marker-popup {
+  min-width: 150px;
+}
+
+.marker-popup strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.map-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.location-markers {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.location-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  z-index: 11;
+  /* Ensure markers are properly positioned relative to map */
+}
+
+.marker-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.location-marker.all-working .marker-dot {
+  background-color: var(--color-working);
+}
+
+.location-marker.has-issues .marker-dot {
+  background-color: var(--color-failure-predicted);
+}
+
+.location-marker:hover .marker-dot {
+  transform: scale(1.3);
+}
+
+.marker-label {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.marker-pie {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pie-segment {
+  height: 50%;
+}
+
+.pie-segment.working {
+  background-color: var(--color-working);
+}
+
+.pie-segment.failure {
+  background-color: var(--color-failure-predicted);
+}
+
+.pie-segment.maintenance {
+  background-color: var(--color-under-maintenance);
+}
+
+.pie-segment.breakdown {
+  background-color: var(--color-breakdown);
+}
+
+.map-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--color-border);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.legend-color.all-working {
+  background-color: var(--color-working);
+}
+
+.legend-color.has-issues {
+  background-color: var(--color-failure-predicted);
+}

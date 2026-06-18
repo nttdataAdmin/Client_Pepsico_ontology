@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 1120" width="840" height="1120">
+  <defs>
+    <filter id="paper2" x="-2%" y="-2%" width="104%" height="104%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="n"/>
+      <feDiffuseLighting in="n" lighting-color="#fff" surfaceScale="0.55" result="l">
+        <feDistantLight azimuth="40" elevation="50"/>
+      </feDiffuseLighting>
+      <feBlend in="SourceGraphic" in2="l" mode="multiply"/>
+    </filter>
+    <style>
+      .t{font-family:Arial,Helvetica,sans-serif;fill:#1a1a1a}
+      .h{font-family:'Segoe Script',cursive;fill:none;stroke:#0d1b4a;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:.93}
+      .hx{stroke:#8b0000}
+      .hdr{fill:#6b1c1c;font-weight:bold;font-size:11px;font-family:Arial,sans-serif}
+      .cell{font-size:8.5px}
+      .note{font-family:'Segoe Script',cursive;font-size:11px;fill:#333;opacity:.85}
+    </style>
+  </defs>
+  <rect width="840" height="1120" fill="#f7f0ee" filter="url(#paper2)"/>
+  <rect x="16" y="16" width="808" height="56" fill="#6b1c1c"/>
+  <text x="36" y="42" class="hdr" fill="#fff">JOB AID  PACKAGE QUALITY &amp; REGULATORY / WEAKLINK (SAMPLE NO-GO)</text>
+  <text x="36" y="58" class="t" fill="#ffd6d6" font-size="9">OBJECTIVE: VERIFY&  FAILURE MARKS IN NO-GO / RTA / RA</text>
+  <text x="700" y="42" class="t" fill="#fff" font-size="8">FL-5883 sample</text>
+  <rect x="16" y="82" width="808" height="72" fill="#fff" stroke="#bbb" stroke-width="0.8"/>
+  <text x="28" y="102" class="t cell">DATE ____/____/____</text>
+  <text x="220" y="102" class="t cell">SHIFT ____</text>
+  <text x="320" y="102" class="t cell">TIME ____</text>
+  <text x="420" y="102" class="t cell">MACHINE NO. ________</text>
+  <text x="28" y="122" class="t cell">PRODUCT ____________________</text>
+  <text x="320" y="122" class="t cell">FLAVOR ____________</text>
+  <text x="520" y="122" class="t cell">UPC / FILM ____________</text>
+  <text x="28" y="142" class="t cell">NITROGEN FLUSH % O� ______</text>
+  <text x="28" y="168" class="t cell" font-weight="bold">CHECKLIST  handwritten marks (demo: filename contains nogo)</text>
+  <g stroke="#999" stroke-width="0.5">
+    <line x1="16" y1="188" x2="824" y2="188"/>
+    <line x1="16" y1="212" x2="824" y2="212"/>
+    <line x1="420" y1="188" x2="420" y2="980"/>
+    <line x1="520" y1="188" x2="520" y2="900"/>
+    <line x1="620" y1="188" x2="620" y2="900"/>
+  </g>
+  <text x="28" y="206" class="t cell" font-weight="bold">Check item</text>
+  <text x="440" y="206" class="t cell">GO</text>
+  <text x="540" y="206" class="t cell">NO-GO</text>
+  <text x="28" y="236" class="t cell">First 5 bags  mixed product review</text>
+  <text x="28" y="264" class="t cell">PSM completed?</text>
+  <text x="28" y="292" class="t cell">Blocker / sock in place?</text>
+  <text x="28" y="320" class="t cell">Expiration date / Price coding</text>
+  <text x="28" y="348" class="t cell">Day / Plant / Shift / Julian code</text>
+  <text x="28" y="376" class="t cell">Material solvent odor?</text>
+  <text x="28" y="404" class="t cell">Product tasted / correct product in bag?</text>
+  <text x="28" y="432" class="t cell">Tape date / Case label date</text>
+  <text x="28" y="460" class="t cell">Canadian made week-of date</text>
+  <text x="28" y="488" class="t cell">PACKAGE APPEARANCE</text>
+  <text x="28" y="516" class="t cell">SEAL INTEGRITY</text>
+  <text x="28" y="544" class="t cell">CASE COUNT</text>
+  <text x="28" y="580" class="t cell" font-size="7.5">GO | RTA | RA</text>
+  <text x="440" y="580" class="t cell">GO</text>
+  <text x="540" y="580" class="t cell">RTA</text>
+  <text x="640" y="580" class="t cell">RA</text>
+  <!-- NO-GO mark row 1 -->
+  <path class="h hx" d="M 532 220 l 4 14 m -8 -7 l 14 0"/>
+  <!-- GO on PSM -->
+  <path class="h" d="M 452 256 l 4 6 l 8 -2 l 6 10"/>
+  <!-- GO several middle -->
+  <path class="h" d="M 454 284 c 2 4 6 8 8 12 c 4 -6 10 -14 16 -20"/>
+  <path class="h" d="M 450 340 l 3 5 l 9 8 l 11 -15"/>
+  <path class="h" d="M 452 396 c 3 5 8 10 10 14 c 5 -8 12 -16 18 -24"/>
+  <!-- NO-GO odor -->
+  <path class="h hx" d="M 530 368 l 6 16 m -10 -8 l 16 2"/>
+  <!-- RTA seal -->
+  <path class="h hx" d="M 542 508 l 2 18 l 14 -10 l 6 8"/>
+  <text x="538" y="528" class="t cell" font-size="7" fill="#8b0000">RTA</text>
+  <!-- RA appearance -->
+  <path class="h hx" d="M 642 478 l 8 4 l -4 12 l 10 -6"/>
+  <text x="638" y="498" class="t cell" font-size="7" fill="#8b0000">RA</text>
+  <!-- GO case count -->
+  <path class="h" d="M 452 536 l 6 10 l 14 -8 l 6 6"/>
+  <text x="24" y="900" class="note">Approver Qs �</text>
+  <path class="h" d="M 100 895 q 8 12 20 28" stroke="#555"/>
+  <rect x="28" y="940" width="360" height="100" fill="none" stroke="#888" stroke-dasharray="4 3"/>
+  <rect x="420" y="940" width="380" height="100" fill="none" stroke="#888" stroke-dasharray="4 3"/>
+  <text x="36" y="962" class="t cell">Initial verification signature</text>
+  <text x="432" y="962" class="t cell">Final verification signature</text>
+  <text x="28" y="1060" class="t cell" font-size="8" fill="#666">Filename: sample_handwritten_fl5883_nogo.svg</text>
+</svg>

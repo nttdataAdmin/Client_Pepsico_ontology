@@ -1,0 +1,73 @@
+.go-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  background: rgba(15, 30, 55, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.go-modal-card {
+  max-width: 400px;
+  width: 100%;
+  background: #fff;
+  border-radius: 14px;
+  padding: 2rem 1.75rem;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.go-modal-icon {
+  margin-bottom: 0.75rem;
+}
+
+.go-modal-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  color: #0d47a1;
+}
+
+.go-modal-text {
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.go-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.go-modal-btn {
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+}
+
+.go-modal-btn.primary {
+  background: #0d47a1;
+  color: #fff;
+}
+
+.go-modal-btn.primary:hover {
+  background: #1565c0;
+}
+
+.go-modal-btn.secondary {
+  background: #eceff1;
+  color: #37474f;
+}
+
+.go-modal-btn.secondary:hover {
+  background: #cfd8dc;
+}

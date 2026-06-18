@@ -1,0 +1,119 @@
+.summary-panel {
+  width: 100%;
+}
+
+.summary-panel-inner {
+  padding: 0;
+}
+
+.summary-panel-hint {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #6b7785;
+}
+
+.search-bar {
+  margin-bottom: 15px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.chart-container {
+  margin-bottom: 20px;
+  height: 200px;
+}
+
+.exception-stack {
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.exception-empty {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #6b7785;
+  padding: 0.5rem 0;
+}
+
+.exception-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(0, 42, 94, 0.08);
+}
+
+.exception-row--action {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 42, 94, 0.08);
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.55rem 0.35rem;
+  margin: 0 -0.35rem;
+  transition: background 0.15s ease;
+}
+
+.exception-row--action:hover {
+  background: rgba(0, 92, 188, 0.06);
+}
+
+.exception-row--action.exception-row--focused {
+  background: rgba(0, 92, 188, 0.12);
+}
+
+.exception-row:last-child {
+  border-bottom: none;
+}
+
+.exception-chevron {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #005cbc;
+  align-self: center;
+}
+
+.exception-status {
+  flex-shrink: 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  max-width: 7rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.exception-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: #1a2836;
+}
+
+.exception-meta {
+  font-size: 0.78rem;
+  color: #6b7785;
+}

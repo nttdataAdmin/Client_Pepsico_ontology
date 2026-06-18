@@ -1,0 +1,14 @@
+.manager-scope-banner {
+  margin-bottom: 1.25rem;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 92, 188, 0.28);
+  background: linear-gradient(135deg, rgba(0, 92, 188, 0.07) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.manager-scope-banner-text {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #2a3a4a;
+}

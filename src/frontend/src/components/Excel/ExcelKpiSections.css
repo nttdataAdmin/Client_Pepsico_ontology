@@ -1,0 +1,108 @@
+.excel-kpi-section {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+}
+
+.excel-kpi-section.loading,
+.excel-kpi-section.error {
+  border-left: 4px solid #005cbc;
+}
+
+.excel-kpi-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  color: #002a5e;
+}
+
+.excel-kpi-sub {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.excel-sheet-block {
+  margin-bottom: 0.75rem;
+  border: 1px solid #dde3ea;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.excel-sheet-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: #f4f7fb;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.excel-sheet-toggle:hover {
+  background: #e8eef6;
+}
+
+.excel-sheet-name {
+  font-weight: 600;
+  color: #003087;
+  flex: 1;
+}
+
+.excel-sheet-meta {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.excel-chevron {
+  color: #888;
+  font-size: 0.75rem;
+}
+
+.excel-table-wrap {
+  overflow: auto;
+  max-height: 420px;
+  padding: 0.5rem;
+  background: #fff;
+}
+
+.excel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.excel-table th,
+.excel-table td {
+  border: 1px solid #e2e8f0;
+  padding: 0.35rem 0.5rem;
+  white-space: nowrap;
+}
+
+.excel-table th {
+  background: #f0f4f9;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.excel-trunc {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.excel-err-msg {
+  color: #b00020;
+  margin: 0.5rem 0;
+}
+
+.excel-err-hint {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0;
+}

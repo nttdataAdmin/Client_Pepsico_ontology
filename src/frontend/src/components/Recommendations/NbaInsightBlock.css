@@ -1,0 +1,135 @@
+.nba-insight {
+  margin-bottom: 1rem;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 92, 188, 0.28);
+  background: linear-gradient(135deg, #f7fbff 0%, #eef6fc 100%);
+}
+
+.nba-insight-heading {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #003087;
+}
+
+.nba-insight-scope {
+  margin: 0 0 0.5rem;
+  font-size: 0.84rem;
+  color: #2a3540;
+}
+
+.nba-insight-loc {
+  font-weight: 500;
+  color: #455a64;
+}
+
+.nba-insight-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.nba-insight-badge--ok {
+  background: rgba(46, 125, 50, 0.15);
+  color: #1b5e20;
+}
+
+.nba-insight-badge--warn {
+  background: rgba(230, 81, 0, 0.14);
+  color: #bf360c;
+}
+
+.nba-insight-note {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #5d4037;
+}
+
+.nba-insight-dl {
+  margin: 0;
+}
+
+.nba-insight-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  margin-bottom: 0.35rem;
+}
+
+.nba-insight-row--block {
+  grid-template-columns: 1fr;
+}
+
+.nba-insight-row dt {
+  margin: 0;
+  font-weight: 600;
+  color: #546e7a;
+}
+
+.nba-insight-row dd {
+  margin: 0;
+  color: #1a2740;
+}
+
+.nba-insight-row--block dt {
+  margin-bottom: 0.2rem;
+}
+
+.nba-insight-prob-title {
+  margin: 0.65rem 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #37474f;
+}
+
+.nba-insight-table-wrap {
+  overflow: auto;
+  max-height: 200px;
+  border: 1px solid rgba(0, 48, 135, 0.12);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.nba-insight-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.nba-insight-table th,
+.nba-insight-table td {
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.nba-insight-table th {
+  background: #f0f4f8;
+  color: #37474f;
+  font-weight: 600;
+}
+
+.nba-insight-foot {
+  margin: 0.65rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: #607d8b;
+}
+
+/* Executive modal: slightly tighter */
+.es-rec-modal-guidance .nba-insight {
+  margin-bottom: 12px;
+}

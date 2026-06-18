@@ -1,0 +1,121 @@
+.asset-status-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.asset-status-summary--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.asset-status-summary--horizontal .status-card {
+  flex: 1 1 120px;
+  min-width: 100px;
+  max-width: 100%;
+  padding: 14px 12px;
+}
+
+.asset-status-summary--horizontal .status-value {
+  font-size: 26px;
+}
+
+.asset-status-summary--horizontal .status-label {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.status-card {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-card.status-default {
+  background-color: #ffffff;
+  border: 2px solid var(--color-border);
+}
+
+.status-card.status-working {
+  background-color: var(--color-working);
+  color: white;
+}
+
+.status-card.status-failure-predicted {
+  background-color: var(--color-failure-predicted);
+  color: #333;
+}
+
+.status-card.status-under-maintenance {
+  background-color: var(--color-under-maintenance);
+  color: white;
+}
+
+.status-card.status-breakdown {
+  background-color: var(--color-breakdown);
+  color: white;
+}
+
+.status-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.status-label {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.asset-status-summary--interactive .status-card--interactive {
+  position: relative;
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+  width: 100%;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.asset-status-summary--interactive .status-card--interactive.status-default {
+  border: 2px solid var(--color-border);
+}
+
+.asset-status-summary--interactive .status-card--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 42, 94, 0.12);
+}
+
+.asset-status-summary--interactive .status-card--interactive:focus-visible {
+  outline: 2px solid #005cbc;
+  outline-offset: 2px;
+}
+
+.status-cta {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.status-card.status-default .status-cta {
+  color: #005cbc;
+}
+
+.status-card.status-working .status-cta,
+.status-card.status-under-maintenance .status-cta,
+.status-card.status-breakdown .status-cta {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.status-card.status-failure-predicted .status-cta {
+  color: #333;
+}

@@ -1,0 +1,84 @@
+{
+  "assets": [
+    {
+      "asset_id": "BEL-PUMP-001",
+      "state": "Beloit",
+      "plant": "P01 - Beloit",
+      "asset_type": "Motor Pump",
+      "status": "Failure Predicted",
+      "criticality": "High",
+      "location": {"lat": 42.5083, "lon": -88.5351},
+      "rul": 700
+    },
+    {
+      "asset_id": "BEL-COMP-002",
+      "state": "Beloit",
+      "plant": "P01 - Beloit",
+      "asset_type": "Motor Compressor",
+      "status": "Working",
+      "criticality": "Medium",
+      "location": {"lat": 42.5083, "lon": -88.5351},
+      "rul": 1200
+    },
+    {
+      "asset_id": "BEL-GEN-003",
+      "state": "Beloit",
+      "plant": "P01 - Beloit",
+      "asset_type": "Generator",
+      "status": "Under Maintenance",
+      "criticality": "High",
+      "location": {"lat": 42.5083, "lon": -88.5351},
+      "rul": 600
+    },
+    {
+      "asset_id": "BEL-FAN-004",
+      "state": "Beloit",
+      "plant": "P01 - Beloit",
+      "asset_type": "Motor Fan",
+      "status": "Working",
+      "criticality": "Low",
+      "location": {"lat": 42.5083, "lon": -88.5351},
+      "rul": 1500
+    },
+    {
+      "asset_id": "JON-GEN-001",
+      "state": "Jonesboro",
+      "plant": "P01 - Jonesboro",
+      "asset_type": "Generator",
+      "status": "Breakdown",
+      "criticality": "High",
+      "location": {"lat": 35.8423, "lon": -90.7043},
+      "rul": 0
+    },
+    {
+      "asset_id": "JON-PUMP-002",
+      "state": "Jonesboro",
+      "plant": "P01 - Jonesboro",
+      "asset_type": "Motor Pump",
+      "status": "Breakdown",
+      "criticality": "High",
+      "location": {"lat": 35.8423, "lon": -90.7043},
+      "rul": 0
+    },
+    {
+      "asset_id": "JON-COMP-003",
+      "state": "Jonesboro",
+      "plant": "P01 - Jonesboro",
+      "asset_type": "Motor Compressor",
+      "status": "Failure Predicted",
+      "criticality": "Medium",
+      "location": {"lat": 35.8423, "lon": -90.7043},
+      "rul": 650
+    },
+    {
+      "asset_id": "JON-FAN-004",
+      "state": "Jonesboro",
+      "plant": "P01 - Jonesboro",
+      "asset_type": "Motor Fan",
+      "status": "Working",
+      "criticality": "Low",
+      "location": {"lat": 35.8423, "lon": -90.7043},
+      "rul": 1400
+    }
+  ]
+}

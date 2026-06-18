@@ -1,0 +1,168 @@
+.root-cause-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-text);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.rca-subheading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #002a5e;
+  margin: 1.25rem 0 0.65rem;
+}
+
+.rca-threshold-deck {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.threshold-crossings-section {
+  margin-bottom: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.section-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.crossings-count {
+  background: #fff3cd;
+  color: #856404;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.crossings-table {
+  overflow-x: auto;
+}
+
+.crossings-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.crossings-table thead {
+  background: #f5f5f5;
+}
+
+.crossings-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.crossings-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.critical-row {
+  background: #ffebee;
+}
+
+.critical-row:hover {
+  background: #ffcdd2;
+}
+
+.warning-row {
+  background: #fff3e0;
+}
+
+.warning-row:hover {
+  background: #ffe0b2;
+}
+
+.type-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.type-badge.vibration {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.type-badge.temperature {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.threshold-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.threshold-badge.critical {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.threshold-badge.warning {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.value-cell {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.previous-cell {
+  color: #666;
+  font-size: 12px;
+}
+
+.action-badge {
+  background: #ff9800;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.critical-row .action-badge {
+  background: #f44336;
+}

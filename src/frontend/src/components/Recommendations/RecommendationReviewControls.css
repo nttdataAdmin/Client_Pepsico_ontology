@@ -1,0 +1,127 @@
+.rec-review-controls {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 48, 135, 0.12);
+}
+
+.rec-review-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.rec-review-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #003087;
+}
+
+.rec-review-select {
+  max-width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 48, 135, 0.25);
+  font-size: 0.86rem;
+  background: #fff;
+  color: #1a2430;
+}
+
+.rec-review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.rec-review-btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid #8899a8;
+  background: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #2a3540;
+}
+
+.rec-review-btn:hover:not(:disabled) {
+  border-color: #005cbc;
+  color: #003087;
+}
+
+.rec-review-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.rec-review-btn--primary {
+  border-color: #005cbc;
+  background: #005cbc;
+  color: #fff;
+}
+
+.rec-review-btn--primary:hover:not(:disabled) {
+  background: #004a9a;
+}
+
+.rec-review-btn--danger {
+  border-color: #b71c1c;
+  color: #b71c1c;
+}
+
+.rec-review-btn--danger:hover:not(:disabled) {
+  background: #ffebee;
+}
+
+.rec-review-status {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #2a3540;
+}
+
+.rec-review-status--accepted {
+  color: #1b5e20;
+}
+
+.rec-review-status--declined {
+  color: #8a2c1f;
+}
+
+.rec-review-status--edited {
+  color: #0d47a1;
+}
+
+.rec-review-clear {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #005cbc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.rec-review-edit-block {
+  margin-top: 4px;
+}
+
+.rec-review-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 48, 135, 0.22);
+  font-size: 0.84rem;
+  line-height: 1.45;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+}

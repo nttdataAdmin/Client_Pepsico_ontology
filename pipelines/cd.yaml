@@ -1,0 +1,47 @@
+# CD pipeline for building, versioning, publishing a Python package to JFrog, and tagging releases on main branch.
+trigger: none
+resources:
+  pipelines:
+  - pipeline: ci
+    source: <replace-with-your-ci-pipeline-source>
+    trigger:
+      branches: [main]
+variables:
+  - group: uv-index-configuration
+  - name: uvVersion
+    value: "0.6.14"
+  - name: pythonVersion
+    value: "3.10"
+pool:
+  vmImage: ubuntu-latest
+steps:
+  - checkout: self
+    persistCredentials: true
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(pythonVersion)'
+    displayName: 'Set up Python $(pythonVersion)'
+  - script: |
+      curl -LsSf https://astral.sh/uv/$(uvVersion)/install.sh | sh
+    displayName: 'Install uv $(uvVersion)'
+  - script: |
+      uv build
+    displayName: 'Build package with uv (wheel and sdist)'
+    env:
+      UV_INDEX_JFROG_PASSWORD: $(UV_INDEX_JFROG_PASSWORD)
+  - template: templates/extract-package-version.yaml
+    parameters:
+      tomlFilePath: 'pyproject.toml'
+      outputVariableName: 'packageVersion'
+  - script: |
+      git fetch --tags
+      if git rev-parse "v$(packageVersion)" >/dev/null 2>&1; then
+        echo "Tag v$(packageVersion) already exists. Failing the pipeline."
+        exit 1
+      fi
+      git config --global user.name "BuildService"
+      git config --global user.email "autobuild@fabrikam.com"
+      git tag -a v$(packageVersion) -m "Release version $(packageVersion)"
+      git push origin v$(packageVersion)
+    workingDirectory: $(Build.SourcesDirectory)
+    displayName: 'Create and push git tag'
