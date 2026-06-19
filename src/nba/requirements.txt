@@ -1,0 +1,13 @@
+# NBA training + inference (from project root)
+#   pip install -r src/nba/requirements.txt
+#
+# Training:
+#   python -c "from src.nba.nba_training import nba_training; nba_training()"
+# Inference:
+#   python src/nba/nba_inference.py
+
+pandas>=2.3.3
+numpy>=1.26.0
+scikit-learn>=1.7.2
+xgboost>=3.2.0
+catboost>=1.2.10
