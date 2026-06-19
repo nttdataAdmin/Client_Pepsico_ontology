@@ -122,7 +122,7 @@ const RecommendationsTable = ({
               />
               {!aiNba && aiRecommendation ? (
                 <p className="ai-nba-miss">
-                  CatBoost NBA summary not available (offline API fallback). Showing narrative only.
+                  Model NBA summary not available (offline API fallback). Showing narrative only.
                 </p>
               ) : null}
               <div className="ai-steps">

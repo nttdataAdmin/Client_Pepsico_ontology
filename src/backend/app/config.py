@@ -43,7 +43,7 @@ class Settings(BaseSettings):
     azure_doc_intelligence_use_ocr: bool = False
     form_classify_default: str = "go"
 
-    # CatBoost next-best-action (relative to backend/ if not absolute)
+    # Next-best-action model directory (relative to backend/ if not absolute)
     catboost_nba_model_dir: str = ""
 
     # Microsoft Graph — maintenance work-order email (see backend/.env.example)

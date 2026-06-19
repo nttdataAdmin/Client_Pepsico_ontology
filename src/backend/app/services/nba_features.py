@@ -1,5 +1,5 @@
 """
-Build feature rows for the CatBoost NBA regressor.
+Build feature rows for the NBA regressor.
 
 There are two kinds of features (NOTE 2 from the NBA team feedback):
 

@@ -89,7 +89,7 @@ const Recommendations = ({ selectedMonth, selectedYear, filters, onFiltersChange
         setAiNba(res && typeof res === 'object' ? res.nba : null);
       } catch (e) {
         console.error(e);
-        setAiRecommendation('Recommendation could not be loaded. Check that the backend is running on port 9898.');
+        setAiRecommendation('Recommendation could not be loaded. Check that the backend API is reachable.');
       } finally {
         setLoadingAI(false);
       }
@@ -146,9 +146,9 @@ const Recommendations = ({ selectedMonth, selectedYear, filters, onFiltersChange
       <h2 className="page-title">Recommendations</h2>
       {isManager ? <ManagerScopeBanner /> : null}
       <p className="agentic-section-intro">
-        <strong>{operatorRoleShort(flow.operatorRole)}</strong> — click <em>View Recommendation</em> on an asset to call the
-        backend: <strong>CatBoost NBA</strong> (action id, title, class probabilities) plus <strong>LLM narrative</strong> in
-        the popup. Same pipeline as the executive snapshot modal.
+        <strong>{operatorRoleShort(flow.operatorRole)}</strong> — click <em>View Recommendation</em> on an asset to run the
+        reliability <strong>model</strong> (action id, title, ranked scores) and synthesize the <strong>LLM narrative</strong>
+        in the popup. Same pipeline as the executive snapshot modal.
       </p>
       {!isManager ? <DataFeedHint /> : null}
 

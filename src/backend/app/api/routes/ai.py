@@ -30,7 +30,7 @@ def _is_executive_nba_payload(body: dict[str, Any]) -> bool:
 
 @router.post("/recommendations", response_model=AIResponse)
 async def get_ai_recommendations(request: RecommendationRequest):
-    """CatBoost next-best-action + LLM narrative; accepts legacy or executive payload."""
+    """Next-best-action from the reliability model + LLM narrative; accepts legacy or executive payload."""
     raw = request.model_dump(mode="json", exclude_none=True)
     ctx = raw.get("context")
     clean: dict[str, Any] = {k: v for k, v in raw.items() if k != "context"}

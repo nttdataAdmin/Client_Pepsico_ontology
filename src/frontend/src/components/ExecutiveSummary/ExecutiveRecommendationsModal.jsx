@@ -163,8 +163,8 @@ export default function ExecutiveRecommendationsModal({
         </header>
         <p className="es-rec-modal-intro">
           Prioritized actions for your signed-in role and location scope (each row shows <strong>plant · state</strong> and the
-          demo queue narrative). Click a row to load the <strong>CatBoost NBA</strong> prediction (action id, title, class
-          probabilities) plus <strong>LLM-synthesised guidance</strong> from the same API call as the Recommendations tab.
+          demo queue narrative). Click a row to load the <strong>model</strong> prediction (action id, title, ranked action
+          scores) plus <strong>LLM-synthesised guidance</strong> from the same API call as the Recommendations tab.
           Use <strong>Enter detailed analysis</strong> on the executive page when you need the full five-tab workspace
           (Anomalies → RCA → Actions → Planned downtime).
         </p>
@@ -222,12 +222,12 @@ export default function ExecutiveRecommendationsModal({
                 ) : null}
                 {!guidanceLoading && selectedKey && !nbaBlock && guidance ? (
                   <p className="es-rec-modal-nba-miss">
-                    CatBoost NBA block was not returned (offline fallback or older API). Narrative only below.
+                    Model NBA block was not returned (offline fallback or older API). Narrative only below.
                   </p>
                 ) : null}
                 <h3 className="es-rec-modal-guidance-title">Synthesised guidance (LLM)</h3>
                 {guidanceLoading ? (
-                  <p className="es-rec-modal-guidance-loading">Running CatBoost NBA and generating guidance…</p>
+                  <p className="es-rec-modal-guidance-loading">Running the model and generating guidance…</p>
                 ) : displayedGuidance ? (
                   <div className="es-rec-modal-guidance-body">{displayedGuidance}</div>
                 ) : null}

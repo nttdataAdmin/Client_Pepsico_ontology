@@ -67,7 +67,9 @@ class AIService:
         context: dict[str, Any] | None = None,
     ) -> tuple[str, dict[str, Any]]:
         """
-        CatBoost next-best-action, then LLM narrative. Do not contradict the model's primary action.
+        Run the reliability model to pick the next-best-action, then ask the LLM
+        for an operational narrative. The LLM must not contradict the model's
+        primary action.
         Returns (narrative_text, nba_public_dict).
         """
         nba = nba_service.predict(asset_data)
@@ -88,7 +90,7 @@ class AIService:
         }
 
         system = """You are an expert maintenance analyst for PepsiCo.
-The NEXT BEST ACTION has already been chosen by a CatBoost reliability model. You must:
+The NEXT BEST ACTION has already been chosen by a trained reliability model. You must:
 - Treat primary_title as the correct recommendation title; explain and expand it, never replace it
   with a different action.
 - Write a long-form, management-ready narrative. Be specific: tie advice to KPIs, asset status,
@@ -98,8 +100,8 @@ The NEXT BEST ACTION has already been chosen by a CatBoost reliability model. Yo
   major recommendation cluster to which KPI(s) it improves.
 - When CMMS Workcenterroles text is provided, repeat it verbatim wherever you name accountable
   parties or roles.
-- Do not mention CatBoost, machine learning, or "the model" to the reader; speak in operational
-  language only.
+- Do not mention the modelling framework, machine learning, or "the model" to the reader;
+  speak in operational language only.
 - Length and depth: aim for at least 800-1500 words when context is rich. Every numbered section
   below must be filled with substance—no one-line sections. Use bullets and sub-bullets for
   actions and owners."""
@@ -272,7 +274,7 @@ The NEXT BEST ACTION has already been chosen by a CatBoost reliability model. Yo
         lines.append("")
         lines.append(
             "*Azure OpenAI is not configured or the narrative call failed; this expanded "
-            "template summarizes the engine decision. Configure AZURE_ENDPOINT and "
+            "template summarizes the model decision. Configure AZURE_ENDPOINT and "
             "AZURE_API_KEY in backend .env for full LLM-synthesized prose.*"
         )
         return "\n".join(lines)

@@ -56,7 +56,7 @@ class AnalysisRequest(BaseModel):
 
 
 class AIResponse(BaseModel):
-    """LLM narrative plus optional CatBoost NBA summary (no raw feature row)."""
+    """LLM narrative plus optional model NBA summary (no raw feature row)."""
 
     result: str
     nba: dict[str, Any] | None = None

@@ -2,17 +2,24 @@ import React from 'react';
 import './NbaInsightBlock.css';
 
 /**
- * Renders CatBoost NBA payload returned alongside /api/ai/recommendations (no feature row).
+ * Renders the NBA payload returned alongside /api/ai/recommendations
+ * (action id, primary action title, playbook, ranked action scores).
  */
-export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 'CatBoost next-best action (NBA)' }) {
+export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 'Next-best action (NBA)' }) {
   if (!nba || typeof nba !== 'object') return null;
 
   const probs = Array.isArray(nba.top_probabilities) ? nba.top_probabilities : [];
   const modelOk = nba.model_ok !== false;
   const loc = [plant, state].filter(Boolean).join(' · ');
+  const primaryScore = typeof nba.score === 'number' ? nba.score : null;
+
+  const formatScore = (v) => {
+    if (typeof v !== 'number' || Number.isNaN(v)) return '—';
+    return v.toFixed(3);
+  };
 
   return (
-    <div className="nba-insight" role="region" aria-label="CatBoost model output">
+    <div className="nba-insight" role="region" aria-label="Model output">
       <h4 className="nba-insight-heading">{heading}</h4>
       <p className="nba-insight-scope">
         <strong>{assetId || 'Asset'}</strong>
@@ -24,7 +31,7 @@ export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 
         ) : null}
       </p>
       <div className={`nba-insight-badge ${modelOk ? 'nba-insight-badge--ok' : 'nba-insight-badge--warn'}`}>
-        {modelOk ? 'CatBoost model' : 'Rule fallback / model unavailable'}
+        {modelOk ? 'Model prediction' : 'Rule fallback / model unavailable'}
       </div>
       {!modelOk && nba.reason ? (
         <p className="nba-insight-note">
@@ -40,6 +47,12 @@ export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 
           <dt>Primary action</dt>
           <dd>{nba.title || '—'}</dd>
         </div>
+        {primaryScore != null ? (
+          <div className="nba-insight-row">
+            <dt>Predicted score</dt>
+            <dd>{formatScore(primaryScore)} <small>(0–1, higher is better)</small></dd>
+          </div>
+        ) : null}
         {nba.playbook ? (
           <div className="nba-insight-row nba-insight-row--block">
             <dt>Playbook</dt>
@@ -49,14 +62,14 @@ export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 
       </dl>
       {probs.length > 0 ? (
         <>
-          <p className="nba-insight-prob-title">Top class probabilities</p>
+          <p className="nba-insight-prob-title">Ranked action scores</p>
           <div className="nba-insight-table-wrap">
             <table className="nba-insight-table">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Action</th>
-                  <th scope="col">Prob.</th>
+                  <th scope="col">Score</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,11 +77,7 @@ export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 
                   <tr key={`${p.action_id}-${idx}`}>
                     <td>{p.action_id != null ? p.action_id : '—'}</td>
                     <td>{p.title || '—'}</td>
-                    <td>
-                      {typeof p.probability === 'number'
-                        ? `${(p.probability <= 1 ? p.probability * 100 : p.probability).toFixed(1)}%`
-                        : '—'}
-                    </td>
+                    <td>{formatScore(p.probability)}</td>
                   </tr>
                 ))}
               </tbody>
