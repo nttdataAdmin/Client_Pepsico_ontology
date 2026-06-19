@@ -1,0 +1,23 @@
+{
+  "status": 0.02664533071219921,
+  "action_id": 0.025899352505803108,
+  "rul_numeric": 0.005404687020927668,
+  "action_freq_same_situation_2m": 0.0025535649619996548,
+  "recent_vibration_mm_s": 0.002198018366470933,
+  "n_kpi_bad": 0.0014328871620818973,
+  "recent_waste_kg_last_hour": 0.0013709798222407699,
+  "recent_temp_dev_c": 0.0012275617336854339,
+  "asset_type": 0.0010308388154953718,
+  "plant": 0.0008546504541300237,
+  "on_hold_inventory_kg_current": 0.000746061559766531,
+  "kpi_score": 0.0007189197931438684,
+  "recent_oee_pct": 0.0006355369696393609,
+  "operator_skill_level": 0.0006332552875392139,
+  "action_success_rate_2m": 0.0006326250731945038,
+  "qc_nogo": 0.0006102467887103558,
+  "state": 0.0005827970453538001,
+  "action_freq_same_situation_2w": 0.0004973280010744929,
+  "criticality": 0.0004634912183973938,
+  "shift_hour_at_event": 0.00042859563836827874,
+  "hours_remaining_in_shift": 0.00039675712469033897
+}
