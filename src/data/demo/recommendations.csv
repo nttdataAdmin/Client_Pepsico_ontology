@@ -1,8 +1,0 @@
-year,month,state,plant,asset_id,asset_type,status,criticality,recommendation
-2023,February,Jonesboro,P01 - Jonesboro,JON-COMP-003,Motor Compressor,Failure Predicted,Low,Investigation Required
-2023,February,Jonesboro,P01 - Jonesboro,JON-GEN-001,Generator,Breakdown,High,Immediate Maintenance Required
-2023,February,Jonesboro,P01 - Jonesboro,JON-PUMP-002,Motor Pump,Breakdown,High,Immediate Maintenance Required
-2023,February,Beloit,P01 - Beloit,BEL-PUMP-001,Motor Pump,Failure Predicted,High,Immediate Maintenance Required
-2023,February,Beloit,P01 - Beloit,BEL-COMP-002,Motor Compressor,Working,Medium,No Action Required
-2023,February,Beloit,P01 - Beloit,BEL-GEN-003,Generator,Under Maintenance,High,Maintenance In Progress
-2023,February,Jonesboro,P01 - Jonesboro,JON-FAN-004,Motor Fan,Working,Low,No Action Required

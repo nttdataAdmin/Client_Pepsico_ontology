@@ -1,0 +1,18 @@
+{
+  "event_id": "EV-00008",
+  "status": "Failure Predicted",
+  "criticality": "High",
+  "asset_type": "Seasoning Train",
+  "plant": "Frito-Lay-West",
+  "state": "AZ",
+  "shift_hour_at_event": 1,
+  "rul": "186.9",
+  "kpiDigestForAi": "Production Goal 43.0% Bad | True Efficiency 55.4% Bad | Quality OK 92.6% Good | Consumer Complaints 1.0 Bad",
+  "recent_temp_dev_c": 5.33,
+  "recent_vibration_mm_s": 3.1,
+  "recent_waste_kg_last_hour": 29.0,
+  "recent_oee_pct": 55.4,
+  "operator_skill_level": 4,
+  "on_hold_inventory_kg_current": 15.8,
+  "qc_nogo": 0
+}
