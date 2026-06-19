@@ -1,0 +1,21 @@
+# Backend runtime dependencies for the PepsiCo MFGPro+ mockup.
+#
+# Mirrors `pyproject.toml [project].dependencies` so the backend can also be
+# installed with plain pip (e.g. `pip install -r src/backend/requirements.txt`)
+# when uv is not available.
+
+catboost>=1.2.10
+email-validator>=2.3.0
+fastapi>=0.136.1
+httpx>=0.28.1
+msal>=1.36.0
+openai>=2.32.0
+openpyxl>=3.1.5
+pandas>=2.3.3
+pydantic>=2.13.3
+pydantic-settings>=2.14.0
+python-dotenv>=1.2.2
+python-multipart>=0.0.27
+scikit-learn>=1.7.2
+uvicorn[standard]>=0.46.0
+xgboost>=3.2.0
