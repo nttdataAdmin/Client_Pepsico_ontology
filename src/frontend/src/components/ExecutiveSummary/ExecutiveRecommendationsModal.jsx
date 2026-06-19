@@ -7,6 +7,7 @@ import { buildExecutiveKpiModel, formatKpiDigestForPrompt } from '../../utils/ex
 import { getOwnerPrerequisiteSteps } from '../../utils/ownerPrerequisiteSteps';
 import RecommendationReviewControls from '../Recommendations/RecommendationReviewControls';
 import NbaInsightBlock from '../Recommendations/NbaInsightBlock';
+import ConstraintsCheckPopup from '../Recommendations/ConstraintsCheckPopup';
 import './ExecutiveRecommendationsModal.css';
 
 function defaultRecReview() {
@@ -36,6 +37,8 @@ export default function ExecutiveRecommendationsModal({
   const [guidance, setGuidance] = useState(null);
   const [guidanceLoading, setGuidanceLoading] = useState(false);
   const [reviewByKey, setReviewByKey] = useState({});
+  const [constraintsCheck, setConstraintsCheck] = useState(null);
+  const [pendingPayload, setPendingPayload] = useState(null);
   const assignableRoles = useMemo(() => getAssignableWorkcenterRoleNames(), []);
 
   const patchReview = useCallback((key, patch) => {
@@ -76,6 +79,8 @@ export default function ExecutiveRecommendationsModal({
       setNbaBlock(null);
       setGuidance(null);
       setGuidanceLoading(false);
+      setConstraintsCheck(null);
+      setPendingPayload(null);
       return;
     }
     setLoading(true);
@@ -93,6 +98,8 @@ export default function ExecutiveRecommendationsModal({
     setNbaBlock(null);
     setGuidance(null);
     setGuidanceLoading(false);
+    setConstraintsCheck(null);
+    setPendingPayload(null);
     setReviewByKey({});
   }, [rows]);
 
@@ -103,6 +110,7 @@ export default function ExecutiveRecommendationsModal({
       setSelectedRow(r);
       setNbaBlock(null);
       setGuidance(null);
+      setConstraintsCheck(null);
       setGuidanceLoading(true);
       const assetRow = getAssetsFiltered({ asset_id: r.asset_id }, { operatorRole })[0] || {};
       const kpiModel = buildExecutiveKpiModel({
@@ -127,11 +135,19 @@ export default function ExecutiveRecommendationsModal({
         timestamp: new Date().toISOString(),
         kpiDigestForAi: formatKpiDigestForPrompt(kpiModel),
       };
+      setPendingPayload(payload);
       try {
-        const res = await getAIRecommendation(payload);
+        const res = await getAIRecommendation(payload, { applyConstraints: true });
         const text = res && typeof res === 'object' ? res.text : String(res);
-        setGuidance(text);
-        setNbaBlock(res && typeof res === 'object' ? res.nba : null);
+        const nba = res && typeof res === 'object' ? res.nba : null;
+        const blocked = nba?.constraints?.blocked_action_ids || [];
+        const warned = nba?.constraints?.warned_action_ids || [];
+        if (blocked.length > 0 || warned.length > 0) {
+          setConstraintsCheck({ text, nba });
+        } else {
+          setGuidance(text);
+          setNbaBlock(nba);
+        }
       } catch {
         setGuidance('Guidance could not be synthesized. Try again or check the assistant configuration.');
         setNbaBlock(null);
@@ -141,6 +157,40 @@ export default function ExecutiveRecommendationsModal({
     },
     [filterParams.month, filters, operatorRole, selectedMonth, selectedYear, excelBundle, flow.outcome]
   );
+
+  const applyConstraints = useCallback(() => {
+    if (!constraintsCheck) return;
+    setGuidance(constraintsCheck.text);
+    setNbaBlock(constraintsCheck.nba);
+    setConstraintsCheck(null);
+  }, [constraintsCheck]);
+
+  const overrideConstraints = useCallback(async () => {
+    if (!pendingPayload) return;
+    setConstraintsCheck(null);
+    setGuidanceLoading(true);
+    try {
+      const res = await getAIRecommendation(pendingPayload, { applyConstraints: false });
+      const text = res && typeof res === 'object' ? res.text : String(res);
+      const nba = res && typeof res === 'object' ? res.nba : null;
+      setGuidance(text);
+      setNbaBlock(nba);
+    } catch {
+      setGuidance('Override fetch failed. Try again or check the assistant configuration.');
+      setNbaBlock(null);
+    } finally {
+      setGuidanceLoading(false);
+    }
+  }, [pendingPayload]);
+
+  const cancelConstraints = useCallback(() => {
+    setConstraintsCheck(null);
+    setGuidance(null);
+    setNbaBlock(null);
+    setSelectedKey(null);
+    setSelectedRow(null);
+    setPendingPayload(null);
+  }, []);
 
   if (!open) return null;
 
@@ -276,6 +326,20 @@ export default function ExecutiveRecommendationsModal({
           </button>
         </footer>
       </div>
+      <ConstraintsCheckPopup
+        open={!!constraintsCheck}
+        constraints={constraintsCheck?.nba?.constraints || null}
+        rawWinnerOverride={constraintsCheck?.nba?.constraints?.raw_winner || null}
+        constrainedWinner={
+          constraintsCheck?.nba
+            ? { title: constraintsCheck.nba.title, score: constraintsCheck.nba.score }
+            : null
+        }
+        assetId={selectedRow?.asset_id}
+        onApply={applyConstraints}
+        onOverride={overrideConstraints}
+        onCancel={cancelConstraints}
+      />
     </div>
   );
 

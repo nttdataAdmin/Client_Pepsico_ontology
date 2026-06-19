@@ -30,10 +30,18 @@ def _is_executive_nba_payload(body: dict[str, Any]) -> bool:
 
 @router.post("/recommendations", response_model=AIResponse)
 async def get_ai_recommendations(request: RecommendationRequest):
-    """Next-best-action from the reliability model + LLM narrative; accepts legacy or executive payload."""
+    """Next-best-action from the reliability model + LLM narrative; accepts legacy or executive payload.
+
+    Optional body field ``apply_constraints`` (bool, default True) toggles the
+    eligibility / safety rule filter. When False, the raw model winner is
+    returned (used by the UI's "override" button).
+    """
     raw = request.model_dump(mode="json", exclude_none=True)
     ctx = raw.get("context")
-    clean: dict[str, Any] = {k: v for k, v in raw.items() if k != "context"}
+    apply_constraints = bool(raw.get("apply_constraints", True))
+    clean: dict[str, Any] = {
+        k: v for k, v in raw.items() if k not in ("context", "apply_constraints")
+    }
 
     if _is_executive_nba_payload(clean):
         asset_data: dict[str, Any] = dict(clean)
@@ -48,6 +56,7 @@ async def get_ai_recommendations(request: RecommendationRequest):
         recommendation, nba_public = ai_service.generate_recommendations(
             asset_data=asset_data,
             context=ctx if isinstance(ctx, dict) else None,
+            apply_constraints=apply_constraints,
         )
         return AIResponse(result=recommendation, nba=nba_public)
 
@@ -65,6 +74,7 @@ async def get_ai_recommendations(request: RecommendationRequest):
     recommendation, nba_public = ai_service.generate_recommendations(
         asset_data=asset_data,
         context=ctx if isinstance(ctx, dict) else None,
+        apply_constraints=apply_constraints,
     )
 
     return AIResponse(result=recommendation, nba=nba_public)

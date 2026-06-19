@@ -12,10 +12,26 @@ export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 
   const modelOk = nba.model_ok !== false;
   const loc = [plant, state].filter(Boolean).join(' · ');
   const primaryScore = typeof nba.score === 'number' ? nba.score : null;
+  const constraints = nba.constraints || null;
+  const blockedIds = new Set((constraints?.blocked_action_ids || []).map(Number));
+  const warnedIds = new Set((constraints?.warned_action_ids || []).map(Number));
+  const constraintsApplied = !!constraints?.applied;
+  const overrideUsed = constraints && constraints.requested === false && (constraints.blocked_action_ids || []).length > 0;
 
   const formatScore = (v) => {
     if (typeof v !== 'number' || Number.isNaN(v)) return '—';
     return v.toFixed(3);
+  };
+
+  const rowClass = (p) => {
+    // Only style blocked/warned rows when the constraints were actually
+    // applied to pick the winner. If the user overrode constraints (or no
+    // rules fired), all rows render plain so they don't look removed.
+    if (!constraintsApplied) return '';
+    const aid = Number(p.action_id);
+    if (blockedIds.has(aid)) return 'nba-insight-row--blocked';
+    if (warnedIds.has(aid)) return 'nba-insight-row--warned';
+    return '';
   };
 
   return (
@@ -30,8 +46,16 @@ export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 
           </>
         ) : null}
       </p>
-      <div className={`nba-insight-badge ${modelOk ? 'nba-insight-badge--ok' : 'nba-insight-badge--warn'}`}>
-        {modelOk ? 'Model prediction' : 'Rule fallback / model unavailable'}
+      <div className="nba-insight-badges">
+        <div className={`nba-insight-badge ${modelOk ? 'nba-insight-badge--ok' : 'nba-insight-badge--warn'}`}>
+          {modelOk ? 'Model prediction' : 'Rule fallback / model unavailable'}
+        </div>
+        {constraintsApplied ? (
+          <div className="nba-insight-badge nba-insight-badge--info">Constraints applied</div>
+        ) : null}
+        {overrideUsed ? (
+          <div className="nba-insight-badge nba-insight-badge--warn">Constraints overridden</div>
+        ) : null}
       </div>
       {!modelOk && nba.reason ? (
         <p className="nba-insight-note">
@@ -74,7 +98,7 @@ export default function NbaInsightBlock({ nba, assetId, plant, state, heading = 
               </thead>
               <tbody>
                 {probs.map((p, idx) => (
-                  <tr key={`${p.action_id}-${idx}`}>
+                  <tr key={`${p.action_id}-${idx}`} className={rowClass(p)}>
                     <td>{p.action_id != null ? p.action_id : '—'}</td>
                     <td>{p.title || '—'}</td>
                     <td>{formatScore(p.probability)}</td>

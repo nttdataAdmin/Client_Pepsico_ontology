@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { getRecommendations, getAssetsFiltered } from '../../data/mockData';
 import { getAIRecommendation } from '../../services/aiService';
 import RecommendationsTable from './RecommendationsTable';
+import ConstraintsCheckPopup from './ConstraintsCheckPopup';
 import SelectPlaceGate from '../Layout/SelectPlaceGate';
 import { DataFeedHint } from '../Agentic/IntegratedDataPanels';
 import { useAppFlow } from '../../context/AppFlowContext';
@@ -35,6 +36,13 @@ const Recommendations = ({ selectedMonth, selectedYear, filters, onFiltersChange
   const [aiRecommendation, setAiRecommendation] = useState(null);
   const [aiNba, setAiNba] = useState(null);
 
+  // Constraint-check state: holds the first response while we ask the user
+  // whether to apply or override the eligibility rules. When `null`, the
+  // recommendation popup renders directly.
+  const [constraintsCheck, setConstraintsCheck] = useState(null);
+  const [pendingAssetId, setPendingAssetId] = useState(null);
+  const [pendingPayload, setPendingPayload] = useState(null);
+
   useEffect(() => {
     setLoading(true);
     const t = setTimeout(() => {
@@ -53,40 +61,61 @@ const Recommendations = ({ selectedMonth, selectedYear, filters, onFiltersChange
     return () => clearTimeout(t);
   }, [selectedMonth, selectedYear, filters, flow.operatorRole]);
 
+  const buildPayload = useCallback(
+    (assetId) => {
+      const assetRow = getAssetsFiltered({ asset_id: assetId }, { operatorRole: flow.operatorRole })[0] || {};
+      const monthName = MONTH_MAP[selectedMonth] || selectedMonth;
+      const kpiModel = buildExecutiveKpiModel({
+        filters,
+        operatorRole: flow.operatorRole,
+        qcGo: flow.outcome === 'go',
+        selectedMonth,
+        selectedYear,
+        excelBundle: excelBundle || {},
+      });
+      return {
+        ...assetRow,
+        asset_id: assetId,
+        asset_type: assetRow.asset_type,
+        status: assetRow.status,
+        criticality: assetRow.criticality,
+        plant: assetRow.plant,
+        state: assetRow.state,
+        month: monthName && monthName !== selectedMonth ? monthName : selectedMonth,
+        year: selectedYear,
+        filterContext: filters,
+        timestamp: new Date().toISOString(),
+        kpiDigestForAi: formatKpiDigestForPrompt(kpiModel),
+      };
+    },
+    [filters, flow.operatorRole, flow.outcome, excelBundle, selectedMonth, selectedYear]
+  );
+
   const handleGetAIRecommendation = useCallback(
     async (assetId) => {
       setLoadingAI(true);
       setAiRecommendation(null);
       setAiNba(null);
+      setConstraintsCheck(null);
+      setPendingAssetId(assetId);
       try {
-        const assetRow = getAssetsFiltered({ asset_id: assetId }, { operatorRole: flow.operatorRole })[0] || {};
-        const monthName = MONTH_MAP[selectedMonth] || selectedMonth;
-        const kpiModel = buildExecutiveKpiModel({
-          filters,
-          operatorRole: flow.operatorRole,
-          qcGo: flow.outcome === 'go',
-          selectedMonth,
-          selectedYear,
-          excelBundle: excelBundle || {},
-        });
-        const payload = {
-          ...assetRow,
-          asset_id: assetId,
-          asset_type: assetRow.asset_type,
-          status: assetRow.status,
-          criticality: assetRow.criticality,
-          plant: assetRow.plant,
-          state: assetRow.state,
-          month: monthName && monthName !== selectedMonth ? monthName : selectedMonth,
-          year: selectedYear,
-          filterContext: filters,
-          timestamp: new Date().toISOString(),
-          kpiDigestForAi: formatKpiDigestForPrompt(kpiModel),
-        };
-        const res = await getAIRecommendation(payload);
+        const payload = buildPayload(assetId);
+        setPendingPayload(payload);
+        const res = await getAIRecommendation(payload, { applyConstraints: true });
         const text = res && typeof res === 'object' ? res.text : String(res);
-        setAiRecommendation(text);
-        setAiNba(res && typeof res === 'object' ? res.nba : null);
+        const nba = res && typeof res === 'object' ? res.nba : null;
+
+        const blocked = nba?.constraints?.blocked_action_ids || [];
+        const warned = nba?.constraints?.warned_action_ids || [];
+
+        // Only gate the user when at least one rule fires. Otherwise show the
+        // recommendation popup straight away (same UX as before).
+        if (blocked.length > 0 || warned.length > 0) {
+          setConstraintsCheck({ text, nba });
+        } else {
+          setAiRecommendation(text);
+          setAiNba(nba);
+        }
       } catch (e) {
         console.error(e);
         setAiRecommendation('Recommendation could not be loaded. Check that the backend API is reachable.');
@@ -94,8 +123,41 @@ const Recommendations = ({ selectedMonth, selectedYear, filters, onFiltersChange
         setLoadingAI(false);
       }
     },
-    [filters, flow.operatorRole, flow.outcome, excelBundle, selectedMonth, selectedYear]
+    [buildPayload]
   );
+
+  const handleApplyConstraints = useCallback(() => {
+    if (!constraintsCheck) return;
+    setAiRecommendation(constraintsCheck.text);
+    setAiNba(constraintsCheck.nba);
+    setConstraintsCheck(null);
+  }, [constraintsCheck]);
+
+  const handleOverrideConstraints = useCallback(async () => {
+    if (!pendingPayload) return;
+    setLoadingAI(true);
+    setConstraintsCheck(null);
+    try {
+      const res = await getAIRecommendation(pendingPayload, { applyConstraints: false });
+      const text = res && typeof res === 'object' ? res.text : String(res);
+      const nba = res && typeof res === 'object' ? res.nba : null;
+      setAiRecommendation(text);
+      setAiNba(nba);
+    } catch (e) {
+      console.error(e);
+      setAiRecommendation('Override fetch failed. Check that the backend API is reachable.');
+    } finally {
+      setLoadingAI(false);
+    }
+  }, [pendingPayload]);
+
+  const handleCancelConstraints = useCallback(() => {
+    setConstraintsCheck(null);
+    setAiRecommendation(null);
+    setAiNba(null);
+    setPendingAssetId(null);
+    setPendingPayload(null);
+  }, []);
 
   const recChatKnowledge = useMemo(() => {
     if (!filters.state) {
@@ -141,6 +203,12 @@ const Recommendations = ({ selectedMonth, selectedYear, filters, onFiltersChange
     );
   }
 
+  const constrainedNba = constraintsCheck?.nba || null;
+  const rawWinner = constrainedNba?.constraints?.raw_winner || null;
+  const constrainedWinner = constrainedNba
+    ? { title: constrainedNba.title, score: constrainedNba.score }
+    : null;
+
   return (
     <div className="recommendations-page">
       <h2 className="page-title">Recommendations</h2>
@@ -148,7 +216,7 @@ const Recommendations = ({ selectedMonth, selectedYear, filters, onFiltersChange
       <p className="agentic-section-intro">
         <strong>{operatorRoleShort(flow.operatorRole)}</strong> — click <em>View Recommendation</em> on an asset to run the
         reliability <strong>model</strong> (action id, title, ranked scores) and synthesize the <strong>LLM narrative</strong>
-        in the popup. Same pipeline as the executive snapshot modal.
+        in the popup. When eligibility rules apply, you'll be shown which actions are removed before the final pick.
       </p>
       {!isManager ? <DataFeedHint /> : null}
 
@@ -163,7 +231,20 @@ const Recommendations = ({ selectedMonth, selectedYear, filters, onFiltersChange
         onClosePopup={() => {
           setAiRecommendation(null);
           setAiNba(null);
+          setPendingAssetId(null);
+          setPendingPayload(null);
         }}
+      />
+
+      <ConstraintsCheckPopup
+        open={!!constraintsCheck}
+        constraints={constrainedNba?.constraints || null}
+        rawWinnerOverride={rawWinner}
+        constrainedWinner={constrainedWinner}
+        assetId={pendingAssetId}
+        onApply={handleApplyConstraints}
+        onOverride={handleOverrideConstraints}
+        onCancel={handleCancelConstraints}
       />
     </div>
   );

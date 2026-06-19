@@ -3,7 +3,7 @@ import { getAnomalies, getRootCauseAnalysis, getResponsiblePartyForAsset } from 
 import { getSessionOperatorRole } from '../utils/operatorRole';
 import { api } from './api';
 
-export const getAIRecommendation = async (assetData) => {
+export const getAIRecommendation = async (assetData, { applyConstraints = true } = {}) => {
   const assetId = assetData.asset_id;
   const cmmsResponsible = getResponsiblePartyForAsset(assetId);
   const roleOpts = { operatorRole: getSessionOperatorRole() };
@@ -48,6 +48,7 @@ export const getAIRecommendation = async (assetData) => {
     ...assetData,
     cmmsWorkcenterRoles: cmmsResponsible,
     recommendationContext,
+    apply_constraints: applyConstraints !== false,
   };
 
   try {

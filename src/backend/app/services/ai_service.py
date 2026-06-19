@@ -17,7 +17,10 @@ def _nba_public_payload(nba: dict[str, Any]) -> dict[str, Any]:
         "action_id": nba.get("action_id"),
         "title": nba.get("title"),
         "playbook": nba.get("playbook"),
+        "score": nba.get("score"),
         "top_probabilities": nba.get("top_probabilities"),
+        "top_alternatives": nba.get("top_alternatives"),
+        "constraints": nba.get("constraints"),
         "model_ok": nba.get("model_ok"),
         "reason": nba.get("reason"),
     }
@@ -65,14 +68,19 @@ class AIService:
         self,
         asset_data: dict[str, Any],
         context: dict[str, Any] | None = None,
+        apply_constraints: bool = True,
     ) -> tuple[str, dict[str, Any]]:
         """
         Run the reliability model to pick the next-best-action, then ask the LLM
         for an operational narrative. The LLM must not contradict the model's
         primary action.
+
+        ``apply_constraints`` toggles whether eligibility/safety rules filter
+        the winner pool (True, default) or whether the raw model winner is
+        returned and explained (False — used by the UI's "override" path).
         Returns (narrative_text, nba_public_dict).
         """
-        nba = nba_service.predict(asset_data)
+        nba = nba_service.predict(asset_data, apply_constraints=apply_constraints)
         nba_public = _nba_public_payload(nba)
         kpi_digest = (
             asset_data.get("kpiDigestForAi") or asset_data.get("kpi_digest_for_ai") or ""

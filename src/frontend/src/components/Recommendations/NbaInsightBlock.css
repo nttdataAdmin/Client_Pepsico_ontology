@@ -47,6 +47,32 @@
   color: #bf360c;
 }
 
+.nba-insight-badge--info {
+  background: rgba(2, 132, 199, 0.14);
+  color: #075985;
+}
+
+.nba-insight-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0.55rem;
+}
+
+.nba-insight-badges .nba-insight-badge {
+  margin-bottom: 0;
+}
+
+.nba-insight-table tr.nba-insight-row--blocked td {
+  text-decoration: line-through;
+  color: #94a3b8;
+  background: #fef2f2;
+}
+
+.nba-insight-table tr.nba-insight-row--warned td {
+  background: #fffbeb;
+}
+
 .nba-insight-note {
   margin: 0 0 0.65rem;
   font-size: 0.8rem;
