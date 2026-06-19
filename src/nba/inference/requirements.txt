@@ -1,0 +1,11 @@
+# NBA inference — minimal dependencies
+# Install (from project root):
+#   pip install -r src/nba/inference/requirements.txt
+# Run:
+#   python -m src.nba.inference
+
+pandas>=2.3.3
+numpy>=1.26.0
+scikit-learn>=1.7.2
+xgboost>=3.2.0
+catboost>=1.2.10
